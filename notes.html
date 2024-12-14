@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Notes Hub</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        .container {
+            padding: 1rem;
+        }
+
+        .search-bar {
+            margin: 2rem auto;
+            text-align: center;
+        }
+
+        .search-bar input {
+            width: 80%;
+            max-width: 400px;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .subjects {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .subject {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 200px;
+            text-align: center;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .subject h2 {
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+        }
+
+        .topics {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .topics li {
+            margin: 0.5rem 0;
+        }
+
+        .topics li a {
+            text-decoration: none;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        .topics li a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            margin-top: 2rem;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Class Notes Hub</h1>
+        <p>Your central hub for all class notes</p>
+    </header>
+
+    <div class="container">
+        <div class="search-bar">
+            <input type="text" id="search" placeholder="Search notes..." oninput="searchNotes()">
+        </div>
+
+        <div class="subjects" id="subjects">
+            <!-- Physics Section -->
+            <div class="subject" data-name="Physics">
+                <h2>Physics</h2>
+                <ul class="topics">
+                    <li><a href="#" target="_blank">Kinematics</a></li>
+                    <li><a href="#" target="_blank">Laws of Motion</a></li>
+                    <li><a href="#" target="_blank">Work, Energy, and Power</a></li>
+                    <li><a href="#" target="_blank">Rotational Motion</a></li>
+                    <li><a href="#" target="_blank">Gravitation</a></li>
+                    <li><a href="#" target="_blank">Thermodynamics</a></li>
+                    <li><a href="#" target="_blank">Waves</a></li>
+                    <li><a href="#" target="_blank">Optics</a></li>
+                    <li><a href="#" target="_blank">Electrostatics</a></li>
+                    <li><a href="#" target="_blank">Current Electricity</a></li>
+                    <li><a href="#" target="_blank">Magnetism</a></li>
+                    <li><a href="#" target="_blank">Modern Physics</a></li>
+                </ul>
+            </div>
+
+            <!-- Chemistry Section -->
+            <div class="subject" data-name="Chemistry">
+                <h2>Chemistry</h2>
+                <ul class="topics">
+                    <li><a href="#" target="_blank">Atomic Structure</a></li>
+                    <li><a href="#" target="_blank">Periodic Table</a></li>
+                    <li><a href="#" target="_blank">Chemical Bonding</a></li>
+                    <li><a href="#" target="_blank">Thermodynamics</a></li>
+                    <li><a href="#" target="_blank">Equilibrium</a></li>
+                    <li><a href="#" target="_blank">Electrochemistry</a></li>
+                    <li><a href="#" target="_blank">Chemical Kinetics</a></li>
+                    <li><a href="#" target="_blank">Organic Chemistry Basics</a></li>
+                    <li><a href="#" target="_blank">Hydrocarbons</a></li>
+                    <li><a href="#" target="_blank">Polymers</a></li>
+                    <li><a href="#" target="_blank">Biomolecules</a></li>
+                </ul>
+            </div>
+
+            <!-- Mathematics Section -->
+            <div class="subject" data-name="Mathematics">
+                <h2>Mathematics</h2>
+                <ul class="topics">
+                    <li><a href="#" target="_blank">Sets, Relations, and Functions</a></li>
+                    <li><a href="#" target="_blank">Complex Numbers</a></li>
+                    <li><a href="#" target="_blank">Quadratic Equations</a></li>
+                    <li><a href="#" target="_blank">Matrices and Determinants</a></li>
+                    <li><a href="#" target="_blank">Permutations and Combinations</a></li>
+                    <li><a href="#" target="_blank">Binomial Theorem</a></li>
+                    <li><a href="#" target="_blank">Sequences and Series</a></li>
+                    <li><a href="#" target="_blank">Limits, Continuity, and Differentiability</a></li>
+                    <li><a href="#" target="_blank">Differentiation</a></li>
+                    <li><a href="#" target="_blank">Integration</a></li>
+                    <li><a href="#" target="_blank">Probability</a></li>
+                    <li><a href="#" target="_blank">Trigonometry</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Class Notes Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function searchNotes() {
+            const query = document.getElementById('search').value.toLowerCase();
+            const subjects = document.querySelectorAll('.subject');
+
+            subjects.forEach(subject => {
+                const name = subject.getAttribute('data-name').toLowerCase();
+                const topics = subject.querySelectorAll('.topics li a');
+
+                let match = name.includes(query);
+
+                topics.forEach(topic => {
+                    if (topic.textContent.toLowerCase().includes(query)) {
+                        match = true;
+                    }
+                });
+
+                subject.style.display = match ? '' : 'none';
+            });
+        }
+    </script>
+</body>
+</html>
